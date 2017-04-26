@@ -29,7 +29,7 @@ void Networking::ReadPendingDatagram()
         udpSocket->readDatagram(datagram.data(),datagram.size(),&sender,&senderPort);
 
         QString m(datagram);
-        qDebug() << m;
+
         emit DatagramReaded(m,sender.toString());
     }
 }

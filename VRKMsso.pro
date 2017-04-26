@@ -26,11 +26,13 @@ DEFINES += QT_DEPRECATED_WARNINGS
 SOURCES += main.cpp\
         mainwindow.cpp \
     networking.cpp \
-    devicemanager.cpp
+    devicemanager.cpp \
+    messageworker.cpp
 
 HEADERS  += mainwindow.h \
     networking.h \
-    devicemanager.h
+    devicemanager.h \
+    messageworker.h
 
 FORMS    += mainwindow.ui \
     devicemanager.ui

@@ -23,12 +23,8 @@ private:
     Ui::MainWindow *ui;
 
 private slots:
-    void ParseSyslogMess(QString message,QString IP);
-    void GetParsedSyslogMess(QStringList messInfo);
+    void GetParsedSyslogMess(QStringList messInfo,QString color);
     void on_DeviceManagerButton_clicked();
-
-signals:
-    void SyslogMessageParsed(QStringList messInfo);
 };
 
 #endif // MAINWINDOW_H

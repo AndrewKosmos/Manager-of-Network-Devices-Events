@@ -70,15 +70,14 @@
            <bool>false</bool>
           </property>
           <property name="styleSheet">
-           <string notr="true">
-</string>
+           <string notr="true"/>
           </property>
           <property name="text">
            <string/>
           </property>
           <property name="icon">
            <iconset resource="resources.qrc">
-            <normaloff>:/images/C:/Users/Andrew/Downloads/Filter-50.png</normaloff>:/images/C:/Users/Andrew/Downloads/Filter-50.png</iconset>
+            <normaloff>:/images/images/Filter-50.png</normaloff>:/images/images/Filter-50.png</iconset>
           </property>
          </widget>
         </item>
@@ -100,7 +99,7 @@
         </property>
         <property name="icon">
          <iconset resource="resources.qrc">
-          <normaloff>:/images/C:/Users/Andrew/Downloads/Networking Manager-100.png</normaloff>:/images/C:/Users/Andrew/Downloads/Networking Manager-100.png</iconset>
+          <normaloff>:/images/images/Networking Manager-100.png</normaloff>:/images/images/Networking Manager-100.png</iconset>
         </property>
         <property name="iconSize">
          <size>
@@ -120,7 +119,7 @@
       <item>
        <widget class="QTableWidget" name="MessagesTableWidget">
         <property name="sortingEnabled">
-         <bool>false</bool>
+         <bool>true</bool>
         </property>
        </widget>
       </item>
