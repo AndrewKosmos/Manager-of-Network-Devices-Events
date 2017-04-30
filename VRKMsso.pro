@@ -4,7 +4,7 @@
 #
 #-------------------------------------------------
 
-QT       += core gui network
+QT       += core gui network sql
 
 greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
 
@@ -27,12 +27,14 @@ SOURCES += main.cpp\
         mainwindow.cpp \
     networking.cpp \
     devicemanager.cpp \
-    messageworker.cpp
+    messageworker.cpp \
+    databaseworker.cpp
 
 HEADERS  += mainwindow.h \
     networking.h \
     devicemanager.h \
-    messageworker.h
+    messageworker.h \
+    databaseworker.h
 
 FORMS    += mainwindow.ui \
     devicemanager.ui

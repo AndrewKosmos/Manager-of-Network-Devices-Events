@@ -8,8 +8,6 @@ MainWindow::MainWindow(QWidget *parent) :
 {
     ui->setupUi(this);
 
-    TableRowCounter = 0;
-
     /* Setup tablewidget */
 
     ui->MessagesTableWidget->setColumnCount(6);
@@ -27,7 +25,7 @@ MainWindow::~MainWindow()
 
 void MainWindow::GetParsedSyslogMess(QStringList messInfo,QString color)
 {
-    ui->MessagesTableWidget->insertRow(TableRowCounter);
+    ui->MessagesTableWidget->insertRow(0);
     QTableWidgetItem *itemDateTime = new QTableWidgetItem(messInfo.at(0));
     QTableWidgetItem *itemIP = new QTableWidgetItem(messInfo.at(1));
     QTableWidgetItem *itemFac = new QTableWidgetItem(messInfo.at(2));
@@ -40,12 +38,12 @@ void MainWindow::GetParsedSyslogMess(QStringList messInfo,QString color)
     itemPriority->setBackgroundColor(color);
     itemTag->setBackgroundColor(color);
     itemMessage->setBackgroundColor(color);
-    ui->MessagesTableWidget->setItem(TableRowCounter,0,itemDateTime);
-    ui->MessagesTableWidget->setItem(TableRowCounter,1,itemIP);
-    ui->MessagesTableWidget->setItem(TableRowCounter,2,itemFac);
-    ui->MessagesTableWidget->setItem(TableRowCounter,3,itemPriority);
-    ui->MessagesTableWidget->setItem(TableRowCounter,4,itemTag);
-    ui->MessagesTableWidget->setItem(TableRowCounter,5,itemMessage);
+    ui->MessagesTableWidget->setItem(0,0,itemDateTime);
+    ui->MessagesTableWidget->setItem(0,1,itemIP);
+    ui->MessagesTableWidget->setItem(0,2,itemFac);
+    ui->MessagesTableWidget->setItem(0,3,itemPriority);
+    ui->MessagesTableWidget->setItem(0,4,itemTag);
+    ui->MessagesTableWidget->setItem(0,5,itemMessage);
 }
 
 void MainWindow::on_DeviceManagerButton_clicked()
@@ -53,4 +51,10 @@ void MainWindow::on_DeviceManagerButton_clicked()
     DeviceManager* dm = new DeviceManager(this);
     dm->setWindowFlags(Qt::Window | Qt::WindowTitleHint | Qt::CustomizeWindowHint | Qt::WindowCloseButtonHint);
     dm->show();
+}
+
+void MainWindow::closeEvent(QCloseEvent *event)
+{
+    emit ProgramIsClosing();
+    event->accept();
 }

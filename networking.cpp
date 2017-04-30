@@ -7,9 +7,9 @@ Networking::Networking(int Port)
     if(udpSocket->bind(Port))
     {
         connect(udpSocket,SIGNAL(readyRead()),this,SLOT(ReadPendingDatagram()));
-        QMessageBox msg;
+        /*QMessageBox msg;
         msg.setText("Bind successfull " + QString::number(Port) + " " + udpSocket->localAddress().toString());
-        msg.exec();
+        msg.exec();*/
     }
     else {
         QMessageBox msg;
