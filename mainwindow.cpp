@@ -8,14 +8,22 @@ MainWindow::MainWindow(QWidget *parent) :
 {
     ui->setupUi(this);
 
-    /* Setup tablewidget */
+    /* Setup tableview and model */
+    model = new CustomSqlModel(this);
+    model->setQuery("select Messages_Table.Datetime, Facility_Table.IP,Facility_Table.Name,Messages_Table.Type,Messages_Table.Tag,Messages_Table.Message from Messages_Table,Facility_Table Where Messages_Table.Facility_ID = Facility_Table.Facility_ID and Messages_table.isNew = 1");
+    model->setHeaderData(0, Qt::Horizontal, QObject::tr("DateTime"));
+    model->setHeaderData(1, Qt::Horizontal, QObject::tr("IP"));
+    model->setHeaderData(2, Qt::Horizontal, QObject::tr("Name"));
+    model->setHeaderData(3, Qt::Horizontal, QObject::tr("Type"));
+    model->setHeaderData(4, Qt::Horizontal, QObject::tr("Tag"));
+    model->setHeaderData(5, Qt::Horizontal, QObject::tr("Message"));
 
-    ui->MessagesTableWidget->setColumnCount(6);
-    ui->MessagesTableWidget->setShowGrid(true);
-    ui->MessagesTableWidget->setHorizontalHeaderLabels(QStringList() << "Time" << "IP" << "Facility" << "Type" << "Tag" << "Message");
-    ui->MessagesTableWidget->setColumnWidth(0,150);
-    ui->MessagesTableWidget->setColumnWidth(1,100);
-    ui->MessagesTableWidget->horizontalHeader()->setStretchLastSection(true);
+    proxy = new MySortFilterProxyModel(this);
+    proxy->setSourceModel(model);
+
+    ui->MessagesTableView->setModel(proxy);
+    ui->MessagesTableView->resizeColumnsToContents();
+    ui->MessagesTableView->horizontalHeader()->setSectionResizeMode(5,QHeaderView::Stretch);
 }
 
 MainWindow::~MainWindow()
@@ -23,27 +31,12 @@ MainWindow::~MainWindow()
     delete ui;
 }
 
-void MainWindow::GetParsedSyslogMess(QStringList messInfo,QString color)
+void MainWindow::RefreshTableView()
 {
-    ui->MessagesTableWidget->insertRow(0);
-    QTableWidgetItem *itemDateTime = new QTableWidgetItem(messInfo.at(0));
-    QTableWidgetItem *itemIP = new QTableWidgetItem(messInfo.at(1));
-    QTableWidgetItem *itemFac = new QTableWidgetItem(messInfo.at(2));
-    QTableWidgetItem *itemPriority = new QTableWidgetItem(messInfo.at(3));
-    QTableWidgetItem *itemTag = new QTableWidgetItem(messInfo.at(4));
-    QTableWidgetItem *itemMessage = new QTableWidgetItem(messInfo.at(5));
-    itemDateTime->setBackgroundColor(color);
-    itemIP->setBackgroundColor(color);
-    itemFac->setBackgroundColor(color);
-    itemPriority->setBackgroundColor(color);
-    itemTag->setBackgroundColor(color);
-    itemMessage->setBackgroundColor(color);
-    ui->MessagesTableWidget->setItem(0,0,itemDateTime);
-    ui->MessagesTableWidget->setItem(0,1,itemIP);
-    ui->MessagesTableWidget->setItem(0,2,itemFac);
-    ui->MessagesTableWidget->setItem(0,3,itemPriority);
-    ui->MessagesTableWidget->setItem(0,4,itemTag);
-    ui->MessagesTableWidget->setItem(0,5,itemMessage);
+    model->refresh();
+    proxy->setSourceModel(model);
+    ui->MessagesTableView->resizeColumnsToContents();
+    ui->MessagesTableView->horizontalHeader()->setSectionResizeMode(5,QHeaderView::Stretch);
 }
 
 void MainWindow::on_DeviceManagerButton_clicked()

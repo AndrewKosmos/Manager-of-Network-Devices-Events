@@ -13,7 +13,13 @@ public:
     QSqlDatabase messagesDatabase;
 
 public slots:
-    void DeleteSessionTable();
+    void DeleteSessionValues();
+    void InsertMessage(QStringList messinfo);
+
+private:
+
+signals:
+    void NewRowInserted();
 };
 
 #endif // DATABASEWORKER_H

@@ -28,13 +28,17 @@ SOURCES += main.cpp\
     networking.cpp \
     devicemanager.cpp \
     messageworker.cpp \
-    databaseworker.cpp
+    databaseworker.cpp \
+    customsqlmodel.cpp \
+    mysortfilterproxymodel.cpp
 
 HEADERS  += mainwindow.h \
     networking.h \
     devicemanager.h \
     messageworker.h \
-    databaseworker.h
+    databaseworker.h \
+    customsqlmodel.h \
+    mysortfilterproxymodel.h
 
 FORMS    += mainwindow.ui \
     devicemanager.ui

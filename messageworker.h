@@ -3,6 +3,8 @@
 #include <QObject>
 #include <QDebug>
 #include <qstring.h>
+#include <QDateTime>
+#include <QLocale>
 
 class MessageWorker : public QObject
 {
@@ -14,7 +16,8 @@ public:
     QStringList messageTypesList;
     QStringList messageColorsList;
 signals:
-    void SyslogMessageParsed(QStringList messInfo,QString color);
+    //void SyslogMessageParsed(QStringList messInfo,QString color);
+    void SyslogMessageParsed(QStringList messInfo);
 };
 
 #endif // MESSAGEWORKER_H

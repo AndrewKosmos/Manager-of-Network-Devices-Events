@@ -31,6 +31,13 @@ void MessageWorker::ParseSyslogMess(QString message, QString IP)
         pos += rxDateTime.matchedLength();
     }
 
+    //Convert DateTime to right string format (for futher converting into QDateTime and <)
+    QString DateTimeStringInitial = DateTimeList.at(0);
+    QStringList partsOfDateTime = DateTimeStringInitial.split(" ",QString::SkipEmptyParts);
+
+    QString DTfinish = partsOfDateTime.at(0) + " " + partsOfDateTime.at(1) + " " + partsOfDateTime.at(2) +
+            + " " + partsOfDateTime.at(3);
+
     //remove message text
     int index2 = neededPartMessageForParse.lastIndexOf(":");
     neededPartMessageForParse.chop(neededPartMessageForParse.length() - index2);
@@ -58,7 +65,7 @@ void MessageWorker::ParseSyslogMess(QString message, QString IP)
 
     int Priority_pos = Priority.toInt();
 
-    messageInfo.append(DateTimeList);
+    messageInfo.append(DTfinish);
     messageInfo.append(senderIP);
     messageInfo.append(Facility);
     messageInfo.append(messageTypesList.at(Priority_pos));
@@ -70,6 +77,7 @@ void MessageWorker::ParseSyslogMess(QString message, QString IP)
     switch (Priority_pos) {
     case 1:
         qDebug() << "System got Alert message";
+        break;
     case 3:
         qDebug() << "System got Error message!";
         break;
@@ -80,5 +88,5 @@ void MessageWorker::ParseSyslogMess(QString message, QString IP)
         break;
     }
 
-    emit SyslogMessageParsed(messageInfo,messageColorsList.at(Priority_pos));
+    emit SyslogMessageParsed(messageInfo);
 }

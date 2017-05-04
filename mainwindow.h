@@ -6,6 +6,9 @@
 #include <QCloseEvent>
 #include "devicemanager.h"
 #include "networking.h"
+#include "customsqlmodel.h"
+#include "databaseworker.h"
+#include "mysortfilterproxymodel.h"
 
 namespace Ui {
 class MainWindow;
@@ -17,6 +20,8 @@ class MainWindow : public QMainWindow
 
 public:
     explicit MainWindow(QWidget *parent = 0);
+    CustomSqlModel *model;
+    MySortFilterProxyModel *proxy;
     ~MainWindow();
 
 private:
@@ -26,8 +31,8 @@ protected:
     virtual void closeEvent(QCloseEvent *event);
 
 private slots:
-    void GetParsedSyslogMess(QStringList messInfo,QString color);
     void on_DeviceManagerButton_clicked();
+    void RefreshTableView();
 
 signals:
     void ProgramIsClosing();
