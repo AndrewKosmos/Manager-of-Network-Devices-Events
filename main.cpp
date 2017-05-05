@@ -4,6 +4,7 @@
 #include "databaseworker.h"
 #include "customsqlmodel.h"
 #include <QApplication>
+#include <QDir>
 
 int main(int argc, char *argv[])
 {
@@ -11,10 +12,9 @@ int main(int argc, char *argv[])
 
     //Setup messageworker and object for database working
     MessageWorker *messageWorker = new MessageWorker();
-    DatabaseWorker dbw("D:/test.db");
+    DatabaseWorker dbw(QDir::homePath() + "/test.db");
 
     MainWindow w;
-    //w.model->setQuery("select Messages_Table.Datetime, Facility_Table.IP,Facility_Table.Name,Messages_Table.Type,Messages_Table.Tag,Messages_Table.Message from Messages_Table,Facility_Table Where Messages_Table.Facility_ID = Facility_Table.Facility_ID");
     w.show();
 
     /* Setup network tasks */
