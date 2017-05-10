@@ -1,0 +1,43 @@
+#FilterButton,#DeviceManagerButton,#SettingsButton{
+	background: transparent;
+	border: none;
+}
+
+#FilterButton:hover,#DeviceManagerButton:hover{
+	background: transparent;
+	border: 0.5px solid lightgray;
+	border-radius: 5px;
+}
+
+#FilterButton:pressed,#DeviceManagerButton:pressed{
+	background: lightgray;
+	border: 1px solid lightgray;
+	border-radius: 7px;
+}
+
+#MessagesTableView::section{
+	background-color: lightgray;
+	border: 1px solid gray;
+}
+
+#MessagesTableView{
+	gridline-color: lightgray;
+}
+
+#SettingsButton:hover{
+	border: 5px solid lightgray;
+	border-radius: 12px;
+}
+
+#SettingsButton:pressed{
+	border: 8px solid darkgray;
+}
+
+#applyFilterBtn{
+	background: green;
+	border: 2px solid darkgreen;
+	color: white;
+	height: 25px;
+	width: 50%;
+	border-radius: 8px;
+}

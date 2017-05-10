@@ -2,21 +2,79 @@
 
 MySortFilterProxyModel::MySortFilterProxyModel(QObject *parent) : QSortFilterProxyModel(parent){}
 
-void MySortFilterProxyModel::setFilterMinimumDate(const QDate &date)
+void MySortFilterProxyModel::setFilterMinimumDate(const QDateTime &date)
 {
     minDate = date;
-    invalidateFilter();
+    //invalidateFilter();
 }
 
-void MySortFilterProxyModel::setFilterMaximumDate(const QDate &date)
+void MySortFilterProxyModel::setFilterMaximumDate(const QDateTime &date)
 {
     maxDate = date;
+    //invalidateFilter();
+}
+
+void MySortFilterProxyModel::RefreshFilter()
+{
     invalidateFilter();
 }
 
 bool MySortFilterProxyModel::filterAcceptsRow(int sourceRow,const QModelIndex &sourceParent) const
 {
+    QModelIndex index0 = sourceModel()->index(sourceRow, 0, sourceParent);
+    QModelIndex index1 = sourceModel()->index(sourceRow, 1, sourceParent);
+    QModelIndex index2 = sourceModel()->index(sourceRow, 2, sourceParent);
+    QModelIndex index3 = sourceModel()->index(sourceRow, 3, sourceParent);
+    QModelIndex index4 = sourceModel()->index(sourceRow, 4, sourceParent);
+    QModelIndex index5 = sourceModel()->index(sourceRow, 5, sourceParent);
 
+    if(dateIsActive == false && txtFilterIsActive == false)
+    {
+        return sourceModel()->data(index1).toString().contains(filterRegExp())
+                || sourceModel()->data(index2).toString().contains(filterRegExp())
+                || sourceModel()->data(index3).toString().contains(filterRegExp())
+                || sourceModel()->data(index4).toString().contains(filterRegExp())
+                || sourceModel()->data(index5).toString().contains(filterRegExp());
+    }
+
+    if(dateIsActive == true && txtFilterIsActive == false)
+    {
+        return dateInRange(sourceModel()->data(index0).toDateTime());
+    }
+    if(dateIsActive == true && txtFilterIsActive == true)
+    {
+        /*return (sourceModel()->data(index0).toString().contains(filterRegExp())
+                || sourceModel()->data(index1).toString().contains(filterRegExp()))
+                && dateInRange(sourceModel()->data(index2).toDate());*/
+        return (sourceModel()->data(index1).toString().contains(filterRegExp())
+                || sourceModel()->data(index2).toString().contains(filterRegExp())
+                || sourceModel()->data(index3).toString().contains(filterRegExp())
+                || sourceModel()->data(index4).toString().contains(filterRegExp())
+                || sourceModel()->data(index5).toString().contains(filterRegExp()))
+                && dateInRange(sourceModel()->data(index0).toDateTime());
+    }
+    if(dateIsActive == false && txtFilterIsActive == true)
+    {
+        switch (filterVariant) {
+        case 1:
+            return sourceModel()->data(index1).toString().contains(filterRegExp());
+            break;
+        case 2:
+            return sourceModel()->data(index2).toString().contains(filterRegExp());
+            break;
+        case 3:
+            return sourceModel()->data(index3).toString().contains(filterRegExp());
+            break;
+        case 4:
+            return sourceModel()->data(index4).toString().contains(filterRegExp());
+            break;
+        case 5:
+            return sourceModel()->data(index5).toString().contains(filterRegExp());
+            break;
+        default:
+            break;
+        }
+    }
 }
 
 ulong MySortFilterProxyModel::getIPweight(QString IP) const
@@ -38,7 +96,7 @@ ulong MySortFilterProxyModel::getIPweight(QString IP) const
     return IpWeight;
 }
 
-bool MySortFilterProxyModel::dateInRange(const QDate &date) const
+bool MySortFilterProxyModel::dateInRange(const QDateTime &date) const
 {
     return (!minDate.isValid() || date > minDate)
             && (!maxDate.isValid() || date < maxDate);

@@ -51,3 +51,57 @@ void MainWindow::closeEvent(QCloseEvent *event)
     emit ProgramIsClosing();
     event->accept();
 }
+
+void MainWindow::on_FilterButton_clicked()
+{
+    filter_window = new FilterSettingsWindow(this);
+    filter_window->setWindowFlags(Qt::Window | Qt::WindowTitleHint | Qt::CustomizeWindowHint | Qt::WindowCloseButtonHint);
+    filter_window->show();
+    connect(filter_window,SIGNAL(FilterButonClicked()),this,SLOT(ApplyFilter()));
+}
+
+void MainWindow::ApplyFilter()
+{
+    switch (filter_window->filterByCMB->currentIndex()) {
+    case 0:
+        {
+            proxy->dateIsActive = false;
+            proxy->txtFilterIsActive = false;
+            proxy->setFilterRegExp("");
+
+            break;
+        }
+    case 1:
+        {
+            proxy->dateIsActive = true;
+            proxy->txtFilterIsActive = false;
+            proxy->setFilterMinimumDate(filter_window->FromDateDTE->dateTime());
+            proxy->setFilterMaximumDate(filter_window->ToDateDTE->dateTime());
+            proxy->RefreshFilter();
+            break;
+        }
+    case 7:
+        {
+            proxy->dateIsActive = true;
+            proxy->txtFilterIsActive = true;
+            QRegExp regExp(filter_window->fw->text(),
+                       filter_window->fw->caseSensitivity(),
+                       filter_window->fw->patternSyntax());
+            proxy->setFilterMinimumDate(filter_window->FromDateDTE->dateTime());
+            proxy->setFilterMaximumDate(filter_window->ToDateDTE->dateTime());
+            proxy->setFilterRegExp(regExp);
+            break;
+        }
+    default:
+        {
+            proxy->filterVariant = filter_window->filterByCMB->currentIndex() - 1;
+            proxy->dateIsActive = false;
+            proxy->txtFilterIsActive = true;
+            QRegExp regExp2(filter_window->fw->text(),
+                       filter_window->fw->caseSensitivity(),
+                       filter_window->fw->patternSyntax());
+            proxy->setFilterRegExp(regExp2);
+            break;
+        }
+    }
+}

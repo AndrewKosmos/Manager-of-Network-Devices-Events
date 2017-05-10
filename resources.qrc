@@ -2,5 +2,16 @@
     <qresource prefix="/images">
         <file>images/Filter-50.png</file>
         <file>images/Networking Manager-100.png</file>
+        <file alias="networkSVG">images/1494216081_network-workgroup.svg</file>
+        <file alias="filterSVG">images/1494217903_filter.svg</file>
+        <file alias="settingsSVG">C:/Users/Andrew/Downloads/1494270572_gear.svg</file>
+        <file alias="searchSVG">C:/Users/Andrew/Downloads/1494329075_67.svg</file>
+        <file alias="clearSVG">C:/Users/Andrew/Downloads/1494329174_Close.svg</file>
+        <file alias="applyPNG">C:/Users/Andrew/Downloads/1494341728_Red mark.png</file>
+        <file alias="filterIconWindowSVG">C:/Users/Andrew/Downloads/1494343132_Descending_filter_filtering_tool_funnel_sort.svg</file>
+        <file alias="MainIconSVG">C:/Users/Andrew/Downloads/1494343487_Coding_html_development_language_programming.svg</file>
+    </qresource>
+    <qresource prefix="/qss">
+        <file>qss/style.css</file>
     </qresource>
 </RCC>

@@ -5,14 +5,23 @@
 #include "customsqlmodel.h"
 #include <QApplication>
 #include <QDir>
+#include <QFile>
+#include <QIODevice>
 
 int main(int argc, char *argv[])
 {
     QApplication a(argc, argv);
 
+    //Setup project stylesheet
+    QFile projectStyle;
+    projectStyle.setFileName(":/qss/qss/style.css");
+    projectStyle.open(QFile::ReadOnly);
+    QString qssStr = projectStyle.readAll();
+    a.setStyleSheet(qssStr);
+
     //Setup messageworker and object for database working
     MessageWorker *messageWorker = new MessageWorker();
-    DatabaseWorker dbw(QDir::homePath() + "/test.db");
+    DatabaseWorker dbw("D:/test.db");
 
     MainWindow w;
     w.show();

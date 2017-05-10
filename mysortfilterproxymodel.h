@@ -10,22 +10,27 @@ class MySortFilterProxyModel : public QSortFilterProxyModel
     Q_OBJECT
 public:
     MySortFilterProxyModel(QObject *parent = 0);
-    QDate filterMinimumDate() const { return minDate; }
-    void setFilterMinimumDate(const QDate &date);
+    QDateTime filterMinimumDateTime() const { return minDate; }
+    void setFilterMinimumDate(const QDateTime &date);
 
-    QDate filterMaximumDate() const { return maxDate; }
-    void setFilterMaximumDate(const QDate &date);
+    QDateTime filterMaximumDateTime() const { return maxDate; }
+    void setFilterMaximumDate(const QDateTime &date);
 
+    bool dateIsActive;
+    bool txtFilterIsActive;
+    int filterVariant;
+
+    void RefreshFilter();
 protected:
     bool filterAcceptsRow(int sourceRow, const QModelIndex &sourceParent) const override;
     bool lessThan(const QModelIndex &left, const QModelIndex &right) const override;
 
 private:
-    bool dateInRange(const QDate &date) const;
+    bool dateInRange(const QDateTime &date) const;
     ulong getIPweight(QString IP) const;
 
-    QDate minDate;
-    QDate maxDate;
+    QDateTime minDate;
+    QDateTime maxDate;
 };
 
 #endif // MYSORTFILTERPROXYMODEL_H

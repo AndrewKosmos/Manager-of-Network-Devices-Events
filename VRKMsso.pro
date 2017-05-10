@@ -30,7 +30,9 @@ SOURCES += main.cpp\
     messageworker.cpp \
     databaseworker.cpp \
     customsqlmodel.cpp \
-    mysortfilterproxymodel.cpp
+    mysortfilterproxymodel.cpp \
+    filtersettingswindow.cpp \
+    filterwidget.cpp
 
 HEADERS  += mainwindow.h \
     networking.h \
@@ -38,10 +40,13 @@ HEADERS  += mainwindow.h \
     messageworker.h \
     databaseworker.h \
     customsqlmodel.h \
-    mysortfilterproxymodel.h
+    mysortfilterproxymodel.h \
+    filtersettingswindow.h \
+    filterwidget.h
 
 FORMS    += mainwindow.ui \
-    devicemanager.ui
+    devicemanager.ui \
+    filtersettingswindow.ui
 
 RESOURCES += \
     resources.qrc
