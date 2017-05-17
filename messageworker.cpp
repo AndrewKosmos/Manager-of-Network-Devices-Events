@@ -76,13 +76,13 @@ void MessageWorker::ParseSyslogMess(QString message, QString IP)
     //set reaction on messages
     switch (Priority_pos) {
     case 1:
-        qDebug() << "System got Alert message";
+        //qDebug() << "System got Alert message";
         break;
     case 3:
-        qDebug() << "System got Error message!";
+        //qDebug() << "System got Error message!";
         break;
     case 4:
-        qDebug() << "System got Warning message";
+        //qDebug() << "System got Warning message";
         break;
     default:
         break;
