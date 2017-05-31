@@ -105,3 +105,10 @@ void MainWindow::ApplyFilter()
         }
     }
 }
+
+void MainWindow::on_SettingsButton_clicked()
+{
+    SettingsWindow* sw = new SettingsWindow(this);
+    sw->setWindowFlags(Qt::Window | Qt::WindowTitleHint | Qt::CustomizeWindowHint | Qt::WindowCloseButtonHint);
+    sw->show();
+}

@@ -12,6 +12,7 @@
 #include "customsqlmodel.h"
 #include "databaseworker.h"
 #include "mysortfilterproxymodel.h"
+#include "settingswindow.h"
 
 namespace Ui {
 class MainWindow;
@@ -43,6 +44,8 @@ private slots:
     void ApplyFilter();
 
     void on_FilterButton_clicked();
+
+    void on_SettingsButton_clicked();
 
 signals:
     void ProgramIsClosing();

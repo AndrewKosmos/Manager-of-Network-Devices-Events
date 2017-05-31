@@ -3,6 +3,7 @@
 #include "messageworker.h"
 #include "databaseworker.h"
 #include "customsqlmodel.h"
+#include "settings.h"
 #include <QApplication>
 #include <QThread>
 #include <QDir>
@@ -12,6 +13,10 @@
 int main(int argc, char *argv[])
 {
     QApplication a(argc, argv);
+
+    //Load Program Settings from .ini
+    Settings *settings = new Settings("settings.ini");
+    settings->LoadSettings();
 
     //Setup project stylesheet
     QFile projectStyle;
@@ -27,7 +32,8 @@ int main(int argc, char *argv[])
     messageWorkerThread->start();
 
     QThread *databaseWorkerThread = new QThread;
-    DatabaseWorker dbw("D:/test.db");
+    QString dbp = settings->databasePath;
+    DatabaseWorker dbw(dbp);
     dbw.moveToThread(databaseWorkerThread);
     databaseWorkerThread->start();
 
@@ -43,5 +49,7 @@ int main(int argc, char *argv[])
     QObject::connect(&dbw,SIGNAL(NewRowInserted()),&w,SLOT(RefreshTableView()));
     SYSLOGManager->moveToThread(SYSLOGManagerThread);
     SYSLOGManagerThread->start();
+
+    Networking *SNMPManager = new Networking(161);
     return a.exec();
 }

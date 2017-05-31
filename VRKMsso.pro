@@ -4,7 +4,7 @@
 #
 #-------------------------------------------------
 
-QT       += core gui network sql
+QT       += core gui network sql charts
 
 greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
 
@@ -32,7 +32,11 @@ SOURCES += main.cpp\
     customsqlmodel.cpp \
     mysortfilterproxymodel.cpp \
     filtersettingswindow.cpp \
-    filterwidget.cpp
+    filterwidget.cpp \
+    settings.cpp \
+    networklineedit.cpp \
+    snmp.cpp \
+    settingswindow.cpp
 
 HEADERS  += mainwindow.h \
     networking.h \
@@ -42,11 +46,16 @@ HEADERS  += mainwindow.h \
     customsqlmodel.h \
     mysortfilterproxymodel.h \
     filtersettingswindow.h \
-    filterwidget.h
+    filterwidget.h \
+    settings.h \
+    networklineedit.h \
+    snmp.h \
+    settingswindow.h
 
 FORMS    += mainwindow.ui \
     devicemanager.ui \
-    filtersettingswindow.ui
+    filtersettingswindow.ui \
+    settingswindow.ui
 
 RESOURCES += \
     resources.qrc
