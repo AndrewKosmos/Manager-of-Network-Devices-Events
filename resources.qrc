@@ -8,6 +8,7 @@
         <file alias="applyPNG">images/1494341728_Red mark.png</file>
         <file alias="filterIconWindowSVG">images/1494343132_Descending_filter_filtering_tool_funnel_sort.svg</file>
         <file alias="MainIconSVG">images/1494343487_Coding_html_development_language_programming.svg</file>
+        <file alias="chartSVG">images/bar-chart (2).svg</file>
     </qresource>
     <qresource prefix="/qss">
         <file>qss/style.css</file>

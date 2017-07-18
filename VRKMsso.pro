@@ -36,7 +36,8 @@ SOURCES += main.cpp\
     settings.cpp \
     networklineedit.cpp \
     snmp.cpp \
-    settingswindow.cpp
+    settingswindow.cpp \
+    chartswindow.cpp
 
 HEADERS  += mainwindow.h \
     networking.h \
@@ -50,12 +51,14 @@ HEADERS  += mainwindow.h \
     settings.h \
     networklineedit.h \
     snmp.h \
-    settingswindow.h
+    settingswindow.h \
+    chartswindow.h
 
 FORMS    += mainwindow.ui \
     devicemanager.ui \
     filtersettingswindow.ui \
-    settingswindow.ui
+    settingswindow.ui \
+    chartswindow.ui
 
 RESOURCES += \
     resources.qrc

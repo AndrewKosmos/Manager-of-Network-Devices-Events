@@ -112,3 +112,4 @@ void MainWindow::on_SettingsButton_clicked()
     sw->setWindowFlags(Qt::Window | Qt::WindowTitleHint | Qt::CustomizeWindowHint | Qt::WindowCloseButtonHint);
     sw->show();
 }
+

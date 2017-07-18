@@ -13,6 +13,7 @@
 #include "databaseworker.h"
 #include "mysortfilterproxymodel.h"
 #include "settingswindow.h"
+#include "chartswindow.h"
 
 namespace Ui {
 class MainWindow;

@@ -1,4 +1,4 @@
-#FilterButton,#DeviceManagerButton,#SettingsButton{
+#FilterButton,#DeviceManagerButton,#SettingsButton,#ChartsButton{
 	background: transparent;
 	border: none;
 }
@@ -24,12 +24,12 @@
 	gridline-color: lightgray;
 }
 
-#SettingsButton:hover{
+#SettingsButton:hover,#ChartsButton:hover{
 	border: 5px solid lightgray;
 	border-radius: 12px;
 }
 
-#SettingsButton:pressed{
+#SettingsButton:pressed,#ChartsButton:pressed{
 	border: 8px solid darkgray;
 }
 

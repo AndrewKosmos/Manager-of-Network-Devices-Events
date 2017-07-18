@@ -27,8 +27,6 @@ private:
     Ui::FilterSettingsWindow *ui;
 
 private slots:
-    //void textFilterChanged();
-    //void dateFilterChanged();
     void applyFilterBtn_clicked();
     void ComboboxStateChanged();
 signals:

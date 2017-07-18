@@ -35,6 +35,7 @@ public:
     QStringList getSTP_MAC ();
     QString getName ();
     QString getOwnMAC ();
+    QString getMetaInfo(QString ip, QString community, QString oid);
 
 
     int getInterfaceStatus (int number);

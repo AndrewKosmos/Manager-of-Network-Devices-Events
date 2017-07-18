@@ -59,10 +59,6 @@ FilterSettingsWindow::FilterSettingsWindow(QWidget *parent) :
     fw->setEnabled(false);
     FromDateDTE->setEnabled(false);
     ToDateDTE->setEnabled(false);
-
-    /*QWidget* empty = new QWidget();
-    empty->setSizePolicy(QSizePolicy::Expanding,QSizePolicy::Preferred);
-    ui->FilterverticalLayout->addWidget(empty);*/
 }
 
 FilterSettingsWindow::~FilterSettingsWindow()
@@ -102,18 +98,5 @@ void FilterSettingsWindow::ComboboxStateChanged()
 
 void FilterSettingsWindow::applyFilterBtn_clicked()
 {
-    /*switch (filterByCMB->currentIndex()) {
-    case 0:
-        qDebug() << "selected 0";
-        break;
-    case 1:
-        qDebug() << "selected 1";
-        break;
-    case 2:
-        qDebug() << "selected 2";
-        break;
-    default:
-        break;
-    }*/
     emit FilterButonClicked();
 }

@@ -4,8 +4,10 @@
 #include <QWidget>
 #include <QPushButton>
 #include <QDebug>
+#include <QTableWidgetItem>
 #include <networklineedit.h>
 #include "snmp.h"
+#include "chartswindow.h"
 
 namespace Ui {
 class DeviceManager;
@@ -20,6 +22,8 @@ public:
     NetworkLineEdit *nleStartIP;
     NetworkLineEdit *nleEndIP;
     QPushButton *SearchIPButton;
+
+    QString ipForSearch;
     ~DeviceManager();
 
 private slots:
@@ -27,11 +31,14 @@ private slots:
 
     void on_RefreshButton_clicked();
 
+    void on_ChartsButton_clicked();
+
+    void on_tableWidget_itemClicked(QTableWidgetItem *item);
+
 public slots:
     void addMyItem (QString, QString, QString);
     void scanDevice();
     void setSyslogStatus(int row,int column);
-    //void enableSyslog(QTreeWidgetItem * item, int column);
 
 private:
     Ui::DeviceManager *ui;

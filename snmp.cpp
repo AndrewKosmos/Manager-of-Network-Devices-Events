@@ -39,6 +39,27 @@ QStringList Snmp::getRawData(QString ip, QString community, QString oid)
     return list;
 }
 
+QString Snmp::getMetaInfo(QString ip, QString community, QString oid)
+{
+    QString program = "snmpget";
+    QStringList arguments;
+    arguments << "-v" << "2c" << "-r" << "1" << "-c"  << community << ip << oid;
+
+    QProcess *myProcess = new QProcess();
+
+    myProcess->start(program, arguments);
+    myProcess->waitForFinished();
+
+    QByteArray return_snmp (myProcess->readAllStandardOutput());
+
+    QString res_snmp = QString(return_snmp);
+    QStringList res_snmp_typeValue = res_snmp.split("=",QString::SkipEmptyParts);
+    QStringList res_snmp_value = res_snmp_typeValue.at(1).split(':',QString::SkipEmptyParts);
+    QStringList res_final = res_snmp_value.at(1).split("\r\n",QString::SkipEmptyParts);
+    QString res = res_final.at(0);
+    return res;
+}
+
 QStringList Snmp::getSTP_MAC ()
 {
     qDebug () << "getSTP_MAC";

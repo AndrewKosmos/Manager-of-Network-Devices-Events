@@ -255,11 +255,7 @@ int NetworkLineEdit::parsingIP ()
     unIP.ip = ip;
     if (unIP.octet[3] == 0)
         return -1;
-    //    qDebug () << "IP-address:";
-    //    qDebug () << unIP.octet[3]
-    //            << unIP.octet[2]
-    //            << unIP.octet[1]
-    //            << unIP.octet[0];
+
     getPrefix();
     return ip;
 }
@@ -267,8 +263,7 @@ int NetworkLineEdit::parsingIP ()
 int NetworkLineEdit::getPrefix()
 {
     unsigned char ch = 128;
-    //qDebug () << "___: " << QString::number((ip & ~(ch - 1)), 2);
-    //qDebug () << "___: " << QString::number((ch - 1), 2);
+
     return 0;
 }
 

@@ -43,9 +43,6 @@ bool MySortFilterProxyModel::filterAcceptsRow(int sourceRow,const QModelIndex &s
     }
     if(dateIsActive == true && txtFilterIsActive == true)
     {
-        /*return (sourceModel()->data(index0).toString().contains(filterRegExp())
-                || sourceModel()->data(index1).toString().contains(filterRegExp()))
-                && dateInRange(sourceModel()->data(index2).toDate());*/
         return (sourceModel()->data(index1).toString().contains(filterRegExp())
                 || sourceModel()->data(index2).toString().contains(filterRegExp())
                 || sourceModel()->data(index3).toString().contains(filterRegExp())

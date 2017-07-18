@@ -30,6 +30,8 @@ DeviceManager::DeviceManager(QWidget *parent) :
     ui->tableWidget->horizontalHeader()->setStretchLastSection(true);
     ui->tableWidget->setEditTriggers(QAbstractItemView::NoEditTriggers);
     connect(ui->tableWidget,SIGNAL(cellDoubleClicked(int,int)),this,SLOT(setSyslogStatus(int,int)));
+
+    ui->ChartsButton->setEnabled(false);
 }
 
 DeviceManager::~DeviceManager()
@@ -59,7 +61,7 @@ void DeviceManager::scanDevice()
 
     if (!(nleStartIP->text().isEmpty()) && !(nleEndIP->text().isEmpty()))
         lstRange = nleStartIP->getRangeIP(nleEndIP);
-    //qDebug () << lstRange << nleIpSwitchStart->isRange();
+
     if (nleStartIP->getRange())
     {
         if (nleStartIP->getRange() > 255)
@@ -148,4 +150,19 @@ void DeviceManager::setSyslogStatus(int row, int column)
             ui->tableWidget->setItem(row,column,newItem);
         }
     }
+}
+
+void DeviceManager::on_ChartsButton_clicked()
+{
+    ChartsWindow *cw = new ChartsWindow(this,ipForSearch);
+    cw->setWindowFlags(Qt::Window | Qt::WindowTitleHint | Qt::CustomizeWindowHint | Qt::WindowCloseButtonHint);
+    cw->show();
+}
+
+void DeviceManager::on_tableWidget_itemClicked(QTableWidgetItem *item)
+{
+    ui->ChartsButton->setEnabled(true);
+    int row = item->row();
+    QTableWidgetItem *getItem = ui->tableWidget->item(row,1);
+    ipForSearch = getItem->text();
 }
